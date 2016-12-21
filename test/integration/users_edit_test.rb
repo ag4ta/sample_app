@@ -35,4 +35,11 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_equal name,  @user.name
     assert_equal email, @user.email
   end
+
+  test "redirect to root_path if user is not activated" do
+    log_in_as(@user)
+    not_activated = users(:lana)
+    get edit_user_url(not_activated)
+    assert_redirected_to root_path
+  end
 end
