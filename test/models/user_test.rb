@@ -90,6 +90,7 @@ class UserTest < ActiveSupport::TestCase
     assert_not agata.following?(archer)
     agata.follow(archer)
     assert agata.following?(archer)
+    assert archer.followers.include?(agata)
     agata.unfollow(archer)
     assert_not agata.following?(archer)
   end
